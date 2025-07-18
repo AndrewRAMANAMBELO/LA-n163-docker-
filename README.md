@@ -2,92 +2,189 @@
 
 ## Feuille de triche des commandes Docker
 
----
+## Commandes de Base
 
-### Commandes de base
-* `docker --version`
-    Affiche la version de Docker installée.
-* `docker info`
-    Donne des informations détaillées sur le système Docker.
-* `docker help`
-    Affiche l'aide générale pour les commandes Docker.
+### Afficher la version de Docker
+```bash
+docker --version
+```
 
----
+### Informations système Docker
+```bash
+docker info
+```
 
-### Images
-* `docker pull <image>`
-    Télécharge une image depuis Docker Hub.
-* `docker images`
-    Liste les images disponibles localement.
-* `docker rmi <image_id>`
-    Supprime une image spécifique.
-* `docker build -t <nom>:<tag> .`
-    Construit une image à partir d'un Dockerfile dans le répertoire courant.
-* `docker tag <image_id> <repo>:<tag>`
-    Crée une nouvelle balise pour une image.
-* `docker push <repo>:<tag>`
-    Envoie une image vers un registre distant.
+### Aide générale sur Docker
+```bash
+docker help
+```
 
 ---
 
-### Conteneurs
-* `docker run <image>`
-    Lance un conteneur à partir d'une image.
-* `docker run -it <image> bash`
-    Lance un conteneur en mode interactif avec un terminal (shell).
-* `docker run -d <image>`
-    Lance un conteneur en arrière-plan (mode "detached").
-* `docker run -p 8080:80 <image>`
-    Mappe le port local `8080` au port `80` du conteneur.
-* `docker run --name <nom> <image>`
-    Nomme le conteneur lors de son lancement.
-* `docker ps`
-    Liste les conteneurs en cours d'exécution.
-* `docker ps -a`
-    Liste tous les conteneurs, y compris ceux qui sont arrêtés.
-* `docker start <id>`
-    Démarre un conteneur qui a été arrêté.
-* `docker stop <id>`
-    Arrête un conteneur en cours d'exécution.
-* `docker restart <id>`
-    Redémarre un conteneur.
-* `docker rm <id>`
-    Supprime un conteneur arrêté.
-* `docker exec -it <id_ou_nom> bash`
-    Exécute une commande (ici `bash`) dans un conteneur déjà en cours d'exécution.
+## Gestion des Images
+
+### Télécharger une image depuis Docker Hub
+```bash
+docker pull <image>
+```
+
+### Lister les images locales
+```bash
+docker images
+```
+
+### Supprimer une image
+```bash
+docker rmi <image_id>
+```
+
+### Construire une image depuis un Dockerfile
+```bash
+docker build -t <nom>:<tag> .
+```
+
+### Ajouter une nouvelle balise à une image
+```bash
+docker tag <image_id> <repo>:<tag>
+```
+
+### Pousser une image vers un registre distant
+```bash
+docker push <repo>:<tag>
+```
 
 ---
 
-### Volumes et fichiers
-* `docker volume create <nom>`
-    Crée un volume Docker.
-* `docker volume ls`
-    Liste tous les volumes Docker.
-* `docker volume rm <nom>`
-    Supprime un volume.
-* `docker run -v <chemin_hote>:<chemin_conteneur> <image>`
-    Monte un dossier de l'hôte dans le conteneur.
-* `docker cp <conteneur>:<chemin> <chemin_hote>`
-    Copie un fichier ou un dossier du conteneur vers la machine hôte.
+## Gestion des Conteneurs
+
+### Lancer un conteneur à partir d'une image
+```bash
+docker run <image>
+```
+
+### Lancer un conteneur avec terminal interactif
+```bash
+docker run -it <image> bash
+```
+
+### Lancer un conteneur en arrière-plan (détaché)
+```bash
+docker run -d <image>
+```
+
+### Mappage de ports (local:conteneur)
+```bash
+docker run -p 8080:80 <image>
+```
+
+### Nommer un conteneur au lancement
+```bash
+docker run --name <nom> <image>
+```
+
+### Lister les conteneurs en cours d’exécution
+```bash
+docker ps
+```
+
+### Lister tous les conteneurs (y compris arrêtés)
+```bash
+docker ps -a
+```
+
+### Démarrer un conteneur arrêté
+```bash
+docker start <id>
+```
+
+### Arrêter un conteneur actif
+```bash
+docker stop <id>
+```
+
+### Redémarrer un conteneur
+```bash
+docker restart <id>
+```
+
+### Supprimer un conteneur arrêté
+```bash
+docker rm <id>
+```
+
+### Exécuter une commande dans un conteneur en cours
+```bash
+docker exec -it <id_ou_nom> bash
+```
 
 ---
 
-### Réseaux
-* `docker network ls`
-    Liste tous les réseaux Docker.
-* `docker network create <nom>`
-    Crée un nouveau réseau.
-* `docker network connect <reseau> <conteneur>`
-    Connecte un conteneur à un réseau.
+## Volumes et Fichiers
+
+### Créer un volume
+```bash
+docker volume create <nom>
+```
+
+### Lister les volumes
+```bash
+docker volume ls
+```
+
+### Supprimer un volume
+```bash
+docker volume rm <nom>
+```
+
+### Monter un dossier de l'hôte dans un conteneur
+```bash
+docker run -v <chemin_hote>:<chemin_conteneur> <image>
+```
+
+### Copier un fichier du conteneur vers l'hôte
+```bash
+docker cp <conteneur>:<chemin> <chemin_hote>
+```
 
 ---
 
-### Divers
-* `docker inspect <nom_ou_id>`
-    Affiche des informations détaillées sur un conteneur, une image, ou un autre objet Docker.
-* `docker logs <conteneur>`
-    Affiche les journaux (logs) d'un conteneur.
-* `docker stats`
-    Affiche l'utilisation des ressources (CPU, mémoire, I/O) des conteneurs en cours d'exécution.
-* `docker system prune`
-    Nettoie les objets Docker inutilisés (conteneurs arrêtés, images orphelines, volumes non attachés).
+## Réseaux
+
+### Lister les réseaux Docker
+```bash
+docker network ls
+```
+
+### Créer un réseau Docker
+```bash
+docker network create <nom>
+```
+
+### Connecter un conteneur à un réseau
+```bash
+docker network connect <reseau> <conteneur>
+```
+
+---
+
+## Inspection et Maintenance
+
+### Inspecter un conteneur, une image ou un objet
+```bash
+docker inspect <nom_ou_id>
+```
+
+### Voir les logs d'un conteneur
+```bash
+docker logs <conteneur>
+```
+
+### Voir l'utilisation des ressources
+```bash
+docker stats
+```
+
+### Nettoyer les objets Docker inutilisés
+```bash
+docker system prune
+```
