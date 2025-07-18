@@ -5,7 +5,7 @@
 ---
 
 ### Commandes de base
-docker --version
+* ˋdocker --version`
     Affiche la version de Docker installée.
 * `docker info`
     Donne des informations détaillées sur le système Docker.
